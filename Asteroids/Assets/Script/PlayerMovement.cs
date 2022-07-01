@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             
-            Shoot?.Invoke();
+            Shoot?.Invoke();  
         }
     }
 }

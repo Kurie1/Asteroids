@@ -34,7 +34,10 @@ public class Shoot : MonoBehaviour
         if (BulletDelete.Count != 0)
         {
             GameObject firstBlock = BulletDelete.Peek();
-            if (firstBlock.transform.position.x > bound || firstBlock.transform.position.x < -bound || firstBlock.transform.position.y > topBound || firstBlock.transform.position.y < -topBound)
+            if (firstBlock.transform.position.x > bound
+                || firstBlock.transform.position.x < -bound
+                || firstBlock.transform.position.y > topBound
+                || firstBlock.transform.position.y < -topBound)
             {
                 BulletDelete.Dequeue();
                 Destroy(firstBlock);
