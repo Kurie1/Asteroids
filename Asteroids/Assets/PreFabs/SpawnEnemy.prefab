@@ -47,3 +47,6 @@ MonoBehaviour:
   EnemyPrefab: {fileID: 4745865537405875423, guid: 4038ba6d10b9b2c47ac4773a465104e6, type: 3}
   SecondBetweenSpawns: 5
   enemyMovementScript: {fileID: 0}
+  enemytopBound: 10
+  enemybound: 10
+  BulletScript: {fileID: 0}

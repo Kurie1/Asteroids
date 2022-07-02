@@ -9,11 +9,13 @@ public class SpawnEnemy : MonoBehaviour
     public EnemyMovement enemyMovementScript;
     public float enemytopBound = 10;
     public float enemybound = 10;
+    public Bullet BulletScript;
 
     private Queue<GameObject> enemyDelete;
     private float topBound;
     private float bound;
     private float nextSpawnTime;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class SpawnEnemy : MonoBehaviour
         float width = height * cam.aspect;
         topBound = height / 2;
         bound = width / 2;
+        BulletScript.Hit += Hit;
     }
 
     // Update is called once per frame
@@ -30,15 +33,19 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (enemyDelete.Count != 0)
         {
-            GameObject firstBlock = enemyDelete.Peek();
-            if (firstBlock.transform.position.x > enemybound
-                || firstBlock.transform.position.x < -enemybound
-                || firstBlock.transform.position.y > enemytopBound
-                || firstBlock.transform.position.y < -enemytopBound)
-            {
-                enemyDelete.Dequeue();
-                Destroy(firstBlock);
 
+            GameObject firstBlock = enemyDelete.Peek();
+            if (firstBlock != null)
+            {
+                if (firstBlock.transform.position.x > enemybound
+                    || firstBlock.transform.position.x < -enemybound
+                    || firstBlock.transform.position.y > enemytopBound
+                    || firstBlock.transform.position.y < -enemytopBound)
+                {
+                    enemyDelete.Dequeue();
+                    Destroy(firstBlock);
+
+                }
             }
         }
         if (Time.time > nextSpawnTime)
@@ -57,5 +64,8 @@ public class SpawnEnemy : MonoBehaviour
         Vector3 randomDerection = RandomPosition - SpawnPosition;
         randomDerection.Normalize();
         return randomDerection;
+    }
+    private void Hit()
+    {
     }
 }

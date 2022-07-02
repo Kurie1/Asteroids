@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float RotateSpeed = 10f;
     public Action Shoot;
     public Action Rotate;
+    public Action Die;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
         {
             
             Shoot?.Invoke();  
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+        {
+            Die?.Invoke();
         }
     }
 }

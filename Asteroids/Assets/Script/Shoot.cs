@@ -21,7 +21,7 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         PlayerMovementScript.Shoot += ShootBullet;
-
+        BulletScript.Hit += Hit;
         Camera cam = Camera.main;
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
@@ -29,21 +29,36 @@ public class Shoot : MonoBehaviour
          bound = width / 2;
         BulletDelete = new Queue<GameObject>();
     }
-     void Update()
+
+
+    void Update()
     {
         if (BulletDelete.Count != 0)
         {
+            
             GameObject firstBlock = BulletDelete.Peek();
-            if (firstBlock.transform.position.x > bound
-                || firstBlock.transform.position.x < -bound
-                || firstBlock.transform.position.y > topBound
-                || firstBlock.transform.position.y < -topBound)
+            if (firstBlock != null)
             {
-                BulletDelete.Dequeue();
-                Destroy(firstBlock);
+                if (firstBlock.transform.position.x > bound
+                    || firstBlock.transform.position.x < -bound
+                    || firstBlock.transform.position.y > topBound
+                    || firstBlock.transform.position.y < -topBound)
+                {
+                    BulletDelete.Dequeue();
+                    Destroy(firstBlock);
 
+                }
             }
         }
+    }
+    private void Hit()
+    {
+        Destroy(this.gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision);
+       
     }
 
     private void ShootBullet()
