@@ -11,10 +11,17 @@ public class PlayerMovement : MonoBehaviour
     public Action Rotate;
     public Action Die;
 
+    private float topBound;
+    private float bound;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        Camera cam = Camera.main;
+        float height = 2f * cam.orthographicSize;
+        float width = height * cam.aspect;
+        topBound = height / 2;
+        bound = width / 2;
     }
 
     // Update is called once per frame
@@ -28,10 +35,29 @@ public class PlayerMovement : MonoBehaviour
             Rotate?.Invoke();
         }
         if (verticalInput != 0)
+           
         {
             transform.position = transform.position + transform.up * verticalInput * MoveSpeed * Time.deltaTime;
             Rotate?.Invoke();
         }
+        if(transform.position.y > topBound)
+        {
+            transform.position = new Vector2(transform.position.x, -topBound);
+        }
+        if (transform.position.y < -topBound)
+        {
+            transform.position = new Vector2(transform.position.x, topBound);
+        }
+        if (transform.position.x > bound)
+        {
+            transform.position = new Vector2(-bound,transform.position.y);
+        }
+            
+        if(transform.position.x < -bound) 
+        {
+            transform.position = new Vector2(bound, transform.position.y);
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             

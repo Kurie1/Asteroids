@@ -10,16 +10,22 @@ public class SpawnEnemy : MonoBehaviour
     public float enemytopBound = 10;
     public float enemybound = 10;
     public Bullet BulletScript;
+    public GameController GameControllerScript;
 
     private Queue<GameObject> enemyDelete;
     private float topBound;
     private float bound;
     private float nextSpawnTime;
+    private bool isGameLose = false;
     
     // Start is called before the first frame update
     void Start()
     {
+        GameControllerScript.OnGameLose += OnGameLose;
+        GameControllerScript.OnGameRestart += OnGameRestart;
+
         enemyDelete = new Queue<GameObject>();
+
         Camera cam = Camera.main;
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
@@ -33,6 +39,8 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (enemyDelete.Count != 0)
         {
+            if (isGameLose)
+                return;
 
             GameObject firstBlock = enemyDelete.Peek();
             if (firstBlock != null)
@@ -67,5 +75,14 @@ public class SpawnEnemy : MonoBehaviour
     }
     private void Hit()
     {
+    }
+    private void OnGameRestart()
+    {
+        isGameLose = false;
+    }
+
+    private void OnGameLose()
+    {
+        isGameLose = true;
     }
 }

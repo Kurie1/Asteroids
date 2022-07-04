@@ -6,18 +6,18 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public GameController GameControllerScript;
-    public TMP_Text scoreText;
+    public TMP_Text score;
     
     public Bullet BulletScript;
 
     private float scoreCounter = 0;
-    private bool isLoseGame = false;
+    
 
     void Start()
     {
         GameControllerScript.OnGameLose += OnGameLose;
         GameControllerScript.OnGameRestart += OnGameRestart;
-        BulletScript.Hit += Score;
+        BulletScript.Hit += Hit;
         
         scoreCounter = 0;
 
@@ -29,9 +29,9 @@ public class UIManager : MonoBehaviour
 
     }
 
-    private void Score()
+    private void Hit()
     {
-        if (!isLoseGame)
+        Debug.Log("a");
             scoreCounter++;
     }
 
@@ -51,14 +51,14 @@ public class UIManager : MonoBehaviour
         if (isGameLose)
         {
             canvasGroup.alpha = 1;
-            scoreText.text = scoreCounter.ToString();
-            isLoseGame = true;
+            score.text = scoreCounter.ToString();
+            
         }
         else
         {
             canvasGroup.alpha = 0;
             scoreCounter = 0;
-            isLoseGame = false;
+            
         }
     }
 }
