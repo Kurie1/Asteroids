@@ -5,11 +5,11 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    public float SecondBetweenSpawns = 0.5f;
+    public float SecondBetweenSpawns;
     public EnemyMovement enemyMovementScript;
     public float enemytopBound = 10;
     public float enemybound = 10;
-    public Bullet BulletScript;
+   
     public GameController GameControllerScript;
 
     private Queue<GameObject> enemyDelete;
@@ -21,6 +21,7 @@ public class SpawnEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SecondBetweenSpawns= Random.Range(3f,6f );
         GameControllerScript.OnGameLose += OnGameLose;
         GameControllerScript.OnGameRestart += OnGameRestart;
 
@@ -31,16 +32,17 @@ public class SpawnEnemy : MonoBehaviour
         float width = height * cam.aspect;
         topBound = height / 2;
         bound = width / 2;
-        BulletScript.Hit += Hit;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameLose)
+            return;
         if (enemyDelete.Count != 0)
         {
-            if (isGameLose)
-                return;
+            
 
             GameObject firstBlock = enemyDelete.Peek();
             if (firstBlock != null)
@@ -73,9 +75,7 @@ public class SpawnEnemy : MonoBehaviour
         randomDerection.Normalize();
         return randomDerection;
     }
-    private void Hit()
-    {
-    }
+   
     private void OnGameRestart()
     {
         isGameLose = false;

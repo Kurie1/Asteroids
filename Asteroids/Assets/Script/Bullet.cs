@@ -29,9 +29,11 @@ public class Bullet : MonoBehaviour
     {
         if (!collision.CompareTag("Player"))
         {
+            
+            Hit?.Invoke();
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
-            Hit?.Invoke();
+            
         }
         
     }

@@ -10,23 +10,37 @@ public class PlayerMovement : MonoBehaviour
     public Action Shoot;
     public Action Rotate;
     public Action Die;
+    public GameController GameControllerScript;
 
+    private Vector2 playerPosition;
     private float topBound;
     private float bound;
+    private bool isGameLose = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameControllerScript.OnGameLose += OnGameLose;
+        GameControllerScript.OnGameRestart += OnGameRestart;
+
         Camera cam = Camera.main;
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
         topBound = height / 2;
         bound = width / 2;
+        playerPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameLose)
+        {
+            transform.position = playerPosition;
+            return;
+        }
+           
+
         float horizontalInput = Input.GetAxisRaw("Horizontal"); //-1 0  1
         float verticalInput = Input.GetAxisRaw("Vertical");// -1  0 1
         if (horizontalInput != 0)
@@ -71,5 +85,14 @@ public class PlayerMovement : MonoBehaviour
         {
             Die?.Invoke();
         }
+    }
+    private void OnGameRestart()
+    {
+        isGameLose = false;
+    }
+
+    private void OnGameLose()
+    {
+        isGameLose = true;
     }
 }

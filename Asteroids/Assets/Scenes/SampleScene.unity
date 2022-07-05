@@ -580,6 +580,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6993949139245440721, guid: 4038ba6d10b9b2c47ac4773a465104e6, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0097151
+      objectReference: {fileID: 0}
+    - target: {fileID: -6993949139245440721, guid: 4038ba6d10b9b2c47ac4773a465104e6, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.00485754
+      objectReference: {fileID: 0}
     - target: {fileID: 2091970507146041070, guid: 4038ba6d10b9b2c47ac4773a465104e6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -825,6 +833,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2534b39dcf7588a4baac7a2f264bd960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1527962652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8177336648799687607, guid: 80cb56f46249192489f67955b3b59778, type: 3}
+  m_PrefabInstance: {fileID: 1123521396922262173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939b1952ef58d814fbf796953dfcafa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1619218093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameControllerScript: {fileID: 1215956607}
   score: {fileID: 1287278965}
-  BulletScript: {fileID: 1351112185}
+  ShootScript: {fileID: 1527962652}
 --- !u!225 &2013842284
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1200,6 +1219,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.039340645
       objectReference: {fileID: 0}
+    - target: {fileID: 1293314000102322831, guid: 80cb56f46249192489f67955b3b59778, type: 3}
+      propertyPath: MoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293314000102322831, guid: 80cb56f46249192489f67955b3b59778, type: 3}
+      propertyPath: RotateSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293314000102322831, guid: 80cb56f46249192489f67955b3b59778, type: 3}
+      propertyPath: GameControllerScript
+      value: 
+      objectReference: {fileID: 1215956607}
     - target: {fileID: 3579354800096885100, guid: 80cb56f46249192489f67955b3b59778, type: 3}
       propertyPath: m_Name
       value: Player

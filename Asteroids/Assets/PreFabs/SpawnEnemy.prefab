@@ -50,3 +50,4 @@ MonoBehaviour:
   enemytopBound: 10
   enemybound: 10
   BulletScript: {fileID: 0}
+  GameControllerScript: {fileID: 0}

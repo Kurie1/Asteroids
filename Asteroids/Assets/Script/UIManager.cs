@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public GameController GameControllerScript;
     public TMP_Text score;
-    
-    public Bullet BulletScript;
+
+    public Shoot ShootScript;
 
     private float scoreCounter = 0;
     
@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     {
         GameControllerScript.OnGameLose += OnGameLose;
         GameControllerScript.OnGameRestart += OnGameRestart;
-        BulletScript.Hit += Hit;
+        ShootScript.OnBulletHitObject += Hit;
         
         scoreCounter = 0;
 
@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void Hit()
     {
-        Debug.Log("a");
+       
             scoreCounter++;
     }
 
@@ -61,4 +61,5 @@ public class UIManager : MonoBehaviour
             
         }
     }
+   
 }

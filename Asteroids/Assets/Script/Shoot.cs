@@ -9,7 +9,8 @@ public class Shoot : MonoBehaviour
     public GameObject BulletPrefabs;
     public PlayerMovement PlayerMovementScript;
     public GameObject shootPosition;
-    public Bullet BulletScript;
+    public Action OnBulletHitObject;
+    
 
     private Queue<GameObject> BulletDelete;
     private float nextShootTime;
@@ -21,7 +22,7 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         PlayerMovementScript.Shoot += ShootBullet;
-        BulletScript.Hit += Hit;
+        
         Camera cam = Camera.main;
         float height = 2f * cam.orthographicSize;
         float width = height * cam.aspect;
@@ -51,10 +52,7 @@ public class Shoot : MonoBehaviour
             }
         }
     }
-    private void Hit()
-    {
-        Destroy(this.gameObject);
-    }
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision);
@@ -72,9 +70,15 @@ public class Shoot : MonoBehaviour
 
             Bullet BulletScript =bulletDelete.GetComponent<Bullet>();
             BulletScript.direction(directionBullet);
+            BulletScript.Hit += OnBulletHit;
 
             BulletDelete.Enqueue(bulletDelete);
 
         }
+    }
+
+    private void OnBulletHit()
+    {
+        OnBulletHitObject?.Invoke();
     }
 }
