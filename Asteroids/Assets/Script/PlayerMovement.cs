@@ -46,13 +46,13 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput != 0)
         {
             transform.Rotate(new Vector3(0, 0, 1), horizontalInput * RotateSpeed * Time.deltaTime);
-            Rotate?.Invoke();
+            
         }
         if (verticalInput != 0)
            
         {
             transform.position = transform.position + transform.up * verticalInput * MoveSpeed * Time.deltaTime;
-            Rotate?.Invoke();
+            
         }
         if(transform.position.y > topBound)
         {
