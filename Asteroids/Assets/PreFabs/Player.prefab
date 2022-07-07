@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 10
   RotateSpeed: 100
+  GameControllerScript: {fileID: 0}
 --- !u!50 &953779513
 Rigidbody2D:
   serializedVersion: 4
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5338713, y: 0.012864366}
@@ -146,7 +147,6 @@ MonoBehaviour:
   BulletPrefabs: {fileID: 4842537210825458883, guid: 302742d77bda9bf43b142cc5ed096e55, type: 3}
   PlayerMovementScript: {fileID: 1293314000102322831}
   shootPosition: {fileID: 1184385442}
-  BulletScript: {fileID: 1555290751, guid: 302742d77bda9bf43b142cc5ed096e55, type: 3}
 --- !u!1 &6081684991159100224
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,14 +29,12 @@ public class Bullet : MonoBehaviour
     {
         if (!collision.CompareTag("Player"))
         {
-            
             Hit?.Invoke();
+            EnemyMovement enemyMovement = collision.GetComponent<EnemyMovement>();
+            enemyMovement.LargeDie();
+
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
-            
         }
-        
     }
-
-
 }

@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
     public PlayerMovement PlayerMovementScript;
     public GameObject shootPosition;
     public Action OnBulletHitObject;
+   
     
 
     private Queue<GameObject> BulletDelete;
@@ -56,7 +57,6 @@ public class Shoot : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision);
-       
     }
 
     private void ShootBullet()

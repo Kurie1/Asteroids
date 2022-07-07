@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,14 @@ public class EnemyMovement : MonoBehaviour
     public float RotateSpeed ;
     public float MinRotateSpeed = 10f;
     public float MaxRotateSpeed = 50f;
+    public Action<Vector3> OnLargeDie;
+    public bool isLargeOne;
 
     private Vector2 randomDerection;
 
     private void Start()
     {
-        RotateSpeed = Random.Range( MinRotateSpeed, MaxRotateSpeed);
+        RotateSpeed = UnityEngine.Random.Range( MinRotateSpeed, MaxRotateSpeed);
     }
     // Update is called once per frame
     void Update()
@@ -29,4 +32,11 @@ public class EnemyMovement : MonoBehaviour
         randomDerection = direction;
 
     }
+
+    public void LargeDie()
+    {
+        if(isLargeOne)
+            OnLargeDie?.Invoke(transform.position);
+    }
+
 }
