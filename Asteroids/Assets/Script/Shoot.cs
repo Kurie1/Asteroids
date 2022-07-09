@@ -51,13 +51,15 @@ public class Shoot : MonoBehaviour
 
                 }
             }
+            else
+            {
+                BulletDelete.Dequeue();
+
+            }
         }
     }
    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(collision);
-    }
+   
 
     private void ShootBullet()
     {

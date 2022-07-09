@@ -58,6 +58,10 @@ public class SpawnEnemy : MonoBehaviour
 
                 }
             }
+            else
+            {
+                enemyDelete.Dequeue();
+            }
         }
 
         if (isGameLose)
